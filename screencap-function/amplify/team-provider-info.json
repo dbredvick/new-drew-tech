@@ -1,0 +1,15 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-drewtech-dev-210012-authRole",
+      "UnauthRoleArn": "arn:aws:iam::667803158246:role/amplify-drewtech-dev-210012-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::667803158246:role/amplify-drewtech-dev-210012-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-drewtech-dev-210012-deployment",
+      "UnauthRoleName": "amplify-drewtech-dev-210012-unauthRole",
+      "StackName": "amplify-drewtech-dev-210012",
+      "StackId": "arn:aws:cloudformation:us-east-1:667803158246:stack/amplify-drewtech-dev-210012/aa4bf4e0-3e81-11eb-a382-12305fa4f4bd",
+      "AmplifyAppId": "deia9k0689s6y"
+    }
+  }
+}

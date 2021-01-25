@@ -1,0 +1,9 @@
+{
+  "function": {
+    "drewteche55a2d18": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    }
+  }
+}
