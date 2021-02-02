@@ -46,7 +46,7 @@ export default function MyApp({ Component, pageProps }) {
           async
           defer
           data-website-id="b693215d-a58d-41c8-b68b-8fad4d8881e4"
-          src="https://analytics.drew.tech/umami.js"
+          src="https://data.drew.tech/umami.js"
         ></script>
       </Head>
       <GoogleFonts href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" />
