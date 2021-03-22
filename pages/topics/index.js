@@ -1,12 +1,12 @@
-import Link from "next/link";
-import Head from "next/head";
+import Link from 'next/link';
+import Head from 'next/head';
 
-const NOTION_BLOG_ID = "fee7a3e8996941bfbadbbcfd2f84d63e";
+const NOTION_BLOG_ID = 'fee7a3e8996941bfbadbbcfd2f84d63e';
 
 export const getAllTags = async () => {
   const results = await fetch(
     `https://notion.drewtech.workers.dev/v1/table/${NOTION_BLOG_ID}`
-  ).then((res) => res.json());
+  ).then(res => res.json());
   return results.sort((a, b) =>
     a.date && b.date ? new Date(b.date) - new Date(a.date) : a.date ? -1 : 1
   );
@@ -46,8 +46,8 @@ const Topics = ({ topics }) => {
     <>
       <Head>
         <title>drew.tech – Topics</title>
-        <meta property="og:title" content={`drew.tech – Topics`} />
-        <meta property="twitter:title" content={`drew.tech – Topics`} />
+        <meta property="og:title" content="drew.tech – Topics" />
+        <meta property="twitter:title" content="drew.tech – Topics" />
         <meta name="title" content="drew.tech – Topics" />
         <meta
           name="description"
@@ -74,7 +74,7 @@ const Topics = ({ topics }) => {
           Topics
         </h3>
         <ul>
-          {topics.map((topic) => (
+          {topics.map(topic => (
             <li
               key={topic.Name}
               className="underline text-black pt-2 md:pt-4 md:text-xl"
@@ -84,7 +84,7 @@ const Topics = ({ topics }) => {
                 href="/topics/[slug]"
                 as={`/topics/${topic.Name}`}
               >
-                {topic.Name.replace(/-/g, " ")}
+                {topic.Name.replace(/-/g, ' ')}
               </Link>
             </li>
           ))}

@@ -1,11 +1,11 @@
-import "react-notion/src/styles.css";
-import "prismjs/themes/prism-tomorrow.css";
-import "tailwindcss/tailwind.css";
-import "../styles/react-notion-overrides.css";
-import GoogleFonts from "next-google-fonts";
-import Head from "next/head";
-import { useRouter } from "next/router";
-import Layout from "../components/layout";
+import 'react-notion/src/styles.css';
+import 'prismjs/themes/prism-tomorrow.css';
+import 'tailwindcss/tailwind.css';
+import '../styles/react-notion-overrides.css';
+import { GoogleFonts } from 'next-google-fonts';
+import Head from 'next/head';
+import { useRouter } from 'next/router';
+import Layout from '../components/layout';
 
 export default function MyApp({ Component, pageProps }) {
   const router = useRouter();
@@ -47,7 +47,7 @@ export default function MyApp({ Component, pageProps }) {
           defer
           data-website-id="b693215d-a58d-41c8-b68b-8fad4d8881e4"
           src="https://data.drew.tech/umami.js"
-        ></script>
+        />
       </Head>
       <GoogleFonts href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" />
       <Layout>

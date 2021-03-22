@@ -1,27 +1,29 @@
-import Link from "next/link";
-import { NotionRenderer } from "react-notion";
+import Link from 'next/link';
+import { NotionRenderer } from 'react-notion';
 
-import { getAllPosts } from "../posts";
-import { getAllTags } from "./index";
-import { useRouter } from "next/router";
-import DefaultErrorPage from "next/error";
-import Head from "next/head";
-import Footer from "../../components/footer";
+import { useRouter } from 'next/router';
+import DefaultErrorPage from 'next/error';
+import Head from 'next/head';
+import { getAllTags } from './index';
+import { getAllPosts } from '../posts';
+import Footer from '../../components/footer';
+import Updates from '../../components/updates';
 
 export async function getStaticProps({ params: { tag } }) {
   // Get all posts again
   const posts = await getAllPosts();
   const tags = await getAllTags();
 
-  const tagData = tags.find((x) => x.Name === tag);
-  const tagArticles = tagData["Related to Drew.tech (Property)"];
-  const taggedPosts = posts.filter((x) => tagArticles.includes(x.id) && x.date);
+  const tagData = tags.find(x => x.Name === tag);
+  const tagCTA = tagData.CTA;
+  const tagArticles = tagData['Related to Drew.tech (Property)'];
+  const taggedPosts = posts.filter(x => tagArticles.includes(x.id) && x.date);
 
   const blocks = await fetch(
     `https://notion.drewtech.workers.dev/v1/page/${tagData.id}`
-  ).then((res) => res.json());
+  ).then(res => res.json());
 
-  const namesAndSlugs = taggedPosts.map((x) => ({
+  const namesAndSlugs = taggedPosts.map(x => ({
     date: x.date,
     Name: x.Name,
     slug: x.slug,
@@ -38,12 +40,13 @@ export async function getStaticProps({ params: { tag } }) {
       posts: namesAndSlugs,
       topic: tag,
       blocks,
+      tagCTA,
     },
     revalidate: 60,
   };
 }
 
-const Page = ({ posts, topic, blocks }) => {
+const Page = ({ posts, topic, blocks, tagCTA }) => {
   const router = useRouter();
   if (router.isFallback) {
     return <h1>Loading...</h1>;
@@ -60,7 +63,7 @@ const Page = ({ posts, topic, blocks }) => {
     );
   }
 
-  const readableTopic = topic.replace(/-/g, " ");
+  const readableTopic = topic.replace(/-/g, ' ');
 
   return (
     <>
@@ -119,7 +122,7 @@ const Page = ({ posts, topic, blocks }) => {
             <div className="pt-4">
               <ul>
                 {posts.map(
-                  (post) =>
+                  post =>
                     post.date && (
                       <li
                         key={post.slug}
@@ -137,7 +140,7 @@ const Page = ({ posts, topic, blocks }) => {
                 )}
               </ul>
             </div>
-            <Footer />
+            {tagCTA === 'bootstrappers-journey' && <Updates />}
           </div>
         </>
       )}
@@ -148,7 +151,7 @@ const Page = ({ posts, topic, blocks }) => {
 export async function getStaticPaths() {
   const tags = await getAllTags();
   return {
-    paths: tags.map((topic) => `/topics/${topic.Name}`),
+    paths: tags.map(topic => `/topics/${topic.Name}`),
     fallback: true,
   };
 }

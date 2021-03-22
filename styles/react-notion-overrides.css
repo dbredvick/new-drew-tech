@@ -3,3 +3,10 @@
   caret-color: rgb(55, 53, 47);
   padding: 8px 2px;
 }
+.notion-list-disc {
+  list-style-type: none;
+  -webkit-padding-start: 1.7em;
+  padding-inline-start: 1.7em;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}

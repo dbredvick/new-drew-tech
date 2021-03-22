@@ -1,12 +1,12 @@
-import Link from "next/link";
-import Head from "next/head";
+import Link from 'next/link';
+import Head from 'next/head';
 
-const NOTION_BLOG_ID = "ad594837ce354521a7eed4ffb95954a2";
+const NOTION_BLOG_ID = 'ad594837ce354521a7eed4ffb95954a2';
 
 export const getAllPosts = async () => {
   const results = await fetch(
     `https://notion.drewtech.workers.dev/v1/table/${NOTION_BLOG_ID}`
-  ).then((res) => res.json());
+  ).then(res => res.json());
   return results.sort((a, b) =>
     a.date && b.date ? new Date(b.date) - new Date(a.date) : a.date ? -1 : 1
   );
@@ -45,8 +45,8 @@ const Posts = ({ posts }) => {
     <>
       <Head>
         <title>drew.tech – All posts</title>
-        <meta property="og:title" content={`drew.tech – All posts`} />
-        <meta property="twitter:title" content={`drew.tech – All posts`} />
+        <meta property="og:title" content="drew.tech – All posts" />
+        <meta property="twitter:title" content="drew.tech – All posts" />
       </Head>
       <div>
         <h3 className="text-2xl lg:text-3xl xl:text-4xl tracking-tight leading-10 font-extrabold text-green-900 sm:leading-none">
@@ -54,7 +54,7 @@ const Posts = ({ posts }) => {
         </h3>
         <ul>
           {posts.map(
-            (post) =>
+            post =>
               post.date && (
                 <li
                   key={post.slug}

@@ -1,11 +1,11 @@
-import Link from "next/link";
-import { Transition } from "@headlessui/react";
-import { useState } from "react";
+import Link from 'next/link';
+import { Transition } from '@headlessui/react';
+import { useState } from 'react';
 
 export default function Layout({ children }) {
   const [isOpen, setIsOpen] = useState(false);
   return (
-    <div className="relative bg-gradient-to-b from-gray-50">
+    <div className="relative bg-gray-50">
       <div className="hidden sm:block sm:absolute sm:inset-y-0 sm:h-full sm:w-full">
         <div className="relative h-full max-w-screen-xl mx-auto">
           <svg
@@ -115,28 +115,20 @@ export default function Layout({ children }) {
                   About
                 </a>
               </Link>
+              <Link href="https://signup.drew.tech/">
+                <a
+                  onClick={() => setIsOpen(false)}
+                  className="font-medium text-gray-500 hover:text-gray-900 transition duration-150 ease-in-out"
+                >
+                  Contact
+                </a>
+              </Link>
               <Link href="/topics">
                 <a
                   onClick={() => setIsOpen(false)}
                   className="font-medium text-gray-500 hover:text-gray-900 transition duration-150 ease-in-out"
                 >
                   Topics
-                </a>
-              </Link>
-              <Link href="/topics/core-web-vitals">
-                <a
-                  onClick={() => setIsOpen(false)}
-                  className="font-medium text-gray-500 hover:text-gray-900 transition duration-150 ease-in-out"
-                >
-                  Notes on Web Vitals
-                </a>
-              </Link>
-              <Link href="/topics/nextjs">
-                <a
-                  onClick={() => setIsOpen(false)}
-                  className="font-medium text-gray-500 hover:text-gray-900 transition duration-150 ease-in-out"
-                >
-                  Notes on Next.js
                 </a>
               </Link>
             </div>
@@ -211,6 +203,15 @@ export default function Layout({ children }) {
                       About
                     </a>
                   </Link>
+                  <Link href="http://signup.drew.tech/">
+                    <a
+                      onClick={() => setIsOpen(false)}
+                      className="mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:text-gray-900 focus:bg-gray-50 transition duration-150 ease-in-out"
+                      role="menuitem"
+                    >
+                      Contact
+                    </a>
+                  </Link>
                   <Link href="/topics">
                     <a
                       onClick={() => setIsOpen(false)}
@@ -220,25 +221,6 @@ export default function Layout({ children }) {
                       Topics
                     </a>
                   </Link>
-                  <Link href="/topics/nextjs">
-                    <a
-                      onClick={() => setIsOpen(false)}
-                      className="mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:text-gray-900 focus:bg-gray-50 transition duration-150 ease-in-out"
-                      role="menuitem"
-                    >
-                      Notes on Next.js
-                    </a>
-                  </Link>
-                  <Link href="/topics/core-web-vitals">
-                    <a
-                      onClick={() => setIsOpen(false)}
-                      className="mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:text-gray-900 focus:bg-gray-50 transition duration-150 ease-in-out"
-                      role="menuitem"
-                    >
-                      Notes on Core Web Vitals
-                    </a>
-                  </Link>
-
                   <Link href="https://signup.drew.tech/" target="_blank">
                     <a
                       className="mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:text-gray-900 focus:bg-gray-50 transition duration-150 ease-in-out"

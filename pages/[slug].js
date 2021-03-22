@@ -1,23 +1,24 @@
-import { NotionRenderer } from "react-notion";
+import { NotionRenderer } from 'react-notion';
 
-import { getAllPosts } from "./posts";
-import { useRouter } from "next/router";
-import DefaultErrorPage from "next/error";
-import Head from "next/head";
-import Link from "next/link";
-import { getAllTags } from "./topics";
+import { useRouter } from 'next/router';
+import DefaultErrorPage from 'next/error';
+import Head from 'next/head';
+import Link from 'next/link';
+import { getAllPosts } from './posts';
+import { getAllTags } from './topics';
+import Updates from '../components/updates';
 
 export async function getStaticProps({ params: { slug } }) {
   // Get all posts again
   const posts = await getAllPosts();
   const tags = await getAllTags();
 
-  const post = posts.find((t) => t.slug === slug);
+  const post = posts.find(t => t.slug === slug);
 
   const topics = tags
-    .filter((x) => post?.Tags?.includes(x.id))
-    .map((x) => ({
-      readable: x.Name.replace(/-/g, " "),
+    .filter(x => post?.Tags?.includes(x.id))
+    .map(x => ({
+      readable: x.Name.replace(/-/g, ' '),
       slug: x.Name,
     }));
 
@@ -31,7 +32,7 @@ export async function getStaticProps({ params: { slug } }) {
 
   const blocks = await fetch(
     `https://notion.drewtech.workers.dev/v1/page/${post.id}`
-  ).then((res) => res.json());
+  ).then(res => res.json());
 
   return {
     props: {
@@ -79,59 +80,62 @@ const Page = ({ post, blocks, topics }) => {
               property="twitter:url"
               content={`https://drew.tech/${post.slug}`}
             />
+            <meta
+              property="description"
+              content={
+                post?.intro ??
+                "I work a full-time job in tech and bootstrap products on the side to earn financial freedom. Let's build something together."
+              }
+            />
+            <meta
+              property="og:description"
+              content={
+                post?.intro ??
+                "I work a full-time job in tech and bootstrap products on the side to earn financial freedom. Let's build something together."
+              }
+            />
           </Head>
           <div className="px-2 container mx-auto py-4 md:py-12 lg:py-16 lg:px-48 xl:px-56 2xl:px-96">
             <h1 className="text-4xl lg:text-5xl xl:text-6xl tracking-tight leading-10 font-extrabold text-green-900 sm:leading-none">
               {post.Name}
             </h1>
             {post.date && (
-              <h3 className="pt-4">{new Date(post.date).toDateString()}</h3>
+              <h3 className="pt-8">{new Date(post.date).toDateString()}</h3>
             )}
             <div className="pt-4">
-              {topics.map((topic) => (
+              {topics.map(topic => (
                 <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-yellow-100 text-yellow-800 mr-2 hover:underline">
                   <Link href={`/topics/${topic.slug}`}>{topic.readable}</Link>
                 </span>
               ))}
             </div>
+            {post?.intro && <div className="pt-8 prose">{post.intro}</div>}
 
-            <div className="pt-4">
+            <div className="prose prose-green">
               <NotionRenderer blockMap={blocks} darkMode={false} />
             </div>
-            <div className="pt-12">
-              <div className="relative">
-                <div
-                  className="absolute inset-0 flex items-center"
-                  aria-hidden="true"
-                >
-                  <div className="w-full border-t border-gray-300"></div>
-                </div>
-                <div className="relative flex justify-center">
-                  <span className="px-2 bg-white text-sm text-gray-500">
-                    Follow
-                  </span>
-                </div>
-              </div>
-
-              <div className="pt-4 text-gray-800">
-                <h4 className="text-2xl lg:text-3xl xl:text-4xl tracking-tight leading-10 font-extrabold text-green-900 sm:leading-none">
-                  Interested in hearing more from me?
-                </h4>{" "}
-                <div className="mt-2">
-                  Sign up for my newsletter where I write about:
-                </div>
-                <ul className="mt-2 notion-list notion-list-disc">
-                  <li>earning a living on the internet</li>
-                  <li>tech for solo-founders</li>
-                  <li>software as a service</li>
-                </ul>
-                <Link href="https://signup.drew.tech" passHref>
-                  <div className="bg-green-900 mt-2 text-white cursor-pointer inline-flex px-10 leading-6 transition ease-in-out duration-150 shadow-sm font-semibold text-center justify-center uppercase py-4 border border-transparent items-center hover:bg-green-600  hover:border hover:border-green-900 rounded-md">
-                    Subscribe
+            {post?.CTA === 'none' && <></>}
+            {typeof post.CTA !== 'undefined' && post.CTA !== 'none' && (
+              <>
+                <div className="pt-12">
+                  <div className="relative">
+                    <div
+                      className="absolute inset-0 flex items-center"
+                      aria-hidden="true"
+                    >
+                      <div className="w-full border-t border-gray-300" />
+                    </div>
+                    <div className="relative flex justify-center">
+                      <span className="px-2 bg-white text-sm text-gray-500">
+                        Follow
+                      </span>
+                    </div>
                   </div>
-                </Link>
-              </div>
-            </div>
+
+                  <Updates />
+                </div>
+              </>
+            )}
           </div>
         </>
       )}
@@ -142,7 +146,7 @@ const Page = ({ post, blocks, topics }) => {
 export async function getStaticPaths() {
   const posts = await getAllPosts();
   return {
-    paths: posts.map((row) => `/${row.slug}`),
+    paths: posts.map(row => `/${row.slug}`),
     fallback: true,
   };
 }
