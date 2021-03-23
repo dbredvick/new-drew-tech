@@ -120,7 +120,7 @@ const Highlights = () => {
           </div>
           <div className="ml-4">
             <dt className="text-lg leading-6 font-medium text-gray-900">
-              The Bootstrapper's Journey Weekly
+              <a href="#revue">The Bootstrapper's Journey Weekly</a>
             </dt>
             <dd className="mt-2 text-base text-gray-500 prose prose-green">
               I'm writing a weekly newsletter documenting my progress towards
@@ -154,7 +154,7 @@ const Highlights = () => {
           </div>
           <div className="ml-4">
             <dt className="text-lg leading-6 font-medium text-gray-900">
-              plzdm.me
+              <a href="https://plzdm.me">plzdm.me</a>
             </dt>
             <dd className="mt-2 text-base text-gray-500 prose prose-green">
               Everyone seems to have a the same DM problem on Twitter. This app
@@ -186,7 +186,7 @@ const Highlights = () => {
           </div>
           <div className="ml-4">
             <dt className="text-lg leading-6 font-medium text-gray-900">
-              FitVitals.dev
+              <a href="https://fitvitals.dev">FitVitals.dev</a>
             </dt>
             <dd className="mt-2 text-base text-gray-500 prose prose-green">
               <Link href="https://fitvitals.dev" passHref>
@@ -222,7 +222,7 @@ const Highlights = () => {
           </div>
           <div className="ml-4">
             <dt className="text-lg leading-6 font-medium text-gray-900">
-              drew.tech
+              <a href="https://drew.tech">drew.tech</a>
             </dt>
             <dd className="mt-2 text-base text-gray-500 prose prose-green">
               This site is the home of my longer writing that's more timeless.

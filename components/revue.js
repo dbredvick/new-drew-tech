@@ -3,7 +3,7 @@ import Link from 'next/link';
 export default function Component({ posts }) {
   if (!posts || !posts.length) return null;
   return (
-    <div className="bg-gray-50 pt-16 pb-20 px-4 lg:pt-24 lg:pb-28 ">
+    <div id="revue" className="bg-gray-50 pt-16 pb-20 px-4 lg:pt-24 lg:pb-28 ">
       <div className="relative max-w-lg mx-auto divide-y-2 divide-gray-200 lg:max-w-7xl">
         <div>
           <h2 className="text-3xl tracking-tight font-extrabold text-gray-900 sm:text-4xl">
